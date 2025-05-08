@@ -1,1 +1,5 @@
 .idea
+.env
+docs/swagger.yaml
+docs/swagger.json
+docs/docs.go
