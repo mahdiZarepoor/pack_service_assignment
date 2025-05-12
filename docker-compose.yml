@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
 
   redis:
-    image: redis:alpine
+    image: redis:7.2.4
     container_name: pack_redis
     ports:
       - "6379:6379"
