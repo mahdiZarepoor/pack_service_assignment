@@ -13,30 +13,13 @@ services:
       - REDIS_PORT=6379
       - REDIS_PASSWORD=
       - PORT=3000
-    depends_on:
-      - redis
     networks:
       - pack_network
     restart: unless-stopped
 
-  redis:
-    image: redis:7.2.4
-    container_name: pack_redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - pack_network
-    restart: unless-stopped
-    command: redis-server --appendonly yes
 
 networks:
   default:
     driver: bridge
   pack_network:
     driver: bridge
-
-volumes:
-  redis_data:
-    driver: local 

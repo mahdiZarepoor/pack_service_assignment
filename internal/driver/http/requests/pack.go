@@ -1,9 +1,9 @@
 package requests
 
 type UpdatePackRequest struct {
-	PackSizes []uint `json:"packSizes"`
+	PackSizes []int `json:"packSizes"`
 }
 
 type CalculatePackRequest struct {
-	Total uint `form:"total" binding:"required"`
+	Total int `form:"total" binding:"required"`
 }
