@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/mahdiZarepoor/pack_service_assignment/configs"
+	"github.com/mahdiZarepoor/pack_service_assignment/cmd/app/configs"
 	"github.com/mahdiZarepoor/pack_service_assignment/docs"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"

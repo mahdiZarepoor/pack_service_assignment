@@ -1,4 +1,4 @@
-package requests
+package dto
 
 type UpdatePackRequest struct {
 	PackSizes []uint `json:"packSizes"`

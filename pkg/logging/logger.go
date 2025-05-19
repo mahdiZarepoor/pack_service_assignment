@@ -1,6 +1,8 @@
 package logging
 
-import "github.com/mahdiZarepoor/pack_service_assignment/configs"
+import (
+	"github.com/mahdiZarepoor/pack_service_assignment/cmd/app/configs"
+)
 
 type Logger interface {
 	Init()

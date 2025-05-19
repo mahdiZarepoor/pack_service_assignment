@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"github.com/mahdiZarepoor/pack_service_assignment/cmd/http_server/routes"
-	"github.com/mahdiZarepoor/pack_service_assignment/configs"
+	"github.com/mahdiZarepoor/pack_service_assignment/cmd/app/configs"
+	"github.com/mahdiZarepoor/pack_service_assignment/cmd/app/http_server/routes"
 	"github.com/mahdiZarepoor/pack_service_assignment/pkg/logging"
 	"sync"
 )

@@ -7,14 +7,12 @@ type ExtraKey string
 const (
 	General         Category = "General"
 	App             Category = "App"
-	Redis           Category = "Redis"
 	RequestResponse Category = "RequestResponse"
 )
 
 const (
 	InternalInfo  SubCategory = "InternalInfo"
 	InternalError SubCategory = "InternalError"
-	RedisInit     SubCategory = "RedisInit"
 	API           SubCategory = "API"
 	Bootstrapping SubCategory = "BootStrapping"
 )

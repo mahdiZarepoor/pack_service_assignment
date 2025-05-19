@@ -4,9 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/mahdiZarepoor/pack_service_assignment/cmd/http_server/middlewares"
-	"github.com/mahdiZarepoor/pack_service_assignment/configs"
-	"github.com/mahdiZarepoor/pack_service_assignment/pkg/cache"
+	"github.com/mahdiZarepoor/pack_service_assignment/cmd/app/configs"
+	"github.com/mahdiZarepoor/pack_service_assignment/cmd/app/http_server/middlewares"
 	"github.com/mahdiZarepoor/pack_service_assignment/pkg/logging"
 	"net/http"
 )
@@ -21,20 +20,17 @@ type HTTP interface {
 }
 
 type HttpServer struct {
-	Cache      cache.Interface
 	Logging    logging.Logger
 	Config     configs.Config
 	httpServer *http.Server
 }
 
 func NewHttpServer(
-	cache cache.Interface,
 	logging logging.Logger,
 	config configs.Config,
 ) *HttpServer {
 
 	return &HttpServer{
-		Cache:   cache,
 		Logging: logging,
 		Config:  config,
 	}
@@ -59,7 +55,7 @@ func (s *HttpServer) registerRoutes() http.Handler {
 	{
 		v1 := api.Group("/v1")
 		{
-			s.SetPackRoutes(v1.Group("packs"), s.Cache)
+			s.SetPackRoutes(v1.Group("packs"))
 		}
 
 	}

@@ -25,7 +25,7 @@ RUN go mod tidy
 COPY . .
 
 # Build the application
-RUN swag init -g ./cmd/http_server/main.go
+RUN swag init -g ./cmd/app/http_server/main.go
 RUN CGO_ENABLED=0 GOOS=linux go build -o pack_service ./cmd/http_server/main.go
 
 # Final stage

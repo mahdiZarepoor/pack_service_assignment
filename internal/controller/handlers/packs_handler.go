@@ -1,12 +1,12 @@
-package http
+package handlers
 
 import (
+	"github.com/mahdiZarepoor/pack_service_assignment/cmd/app/configs"
+	"github.com/mahdiZarepoor/pack_service_assignment/internal/dto"
+	"github.com/mahdiZarepoor/pack_service_assignment/internal/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/mahdiZarepoor/pack_service_assignment/configs"
-	"github.com/mahdiZarepoor/pack_service_assignment/internal/core/ports/packs_port"
-	"github.com/mahdiZarepoor/pack_service_assignment/internal/driver/http/requests"
 	"github.com/mahdiZarepoor/pack_service_assignment/pkg/logging"
 	"github.com/mahdiZarepoor/pack_service_assignment/pkg/response"
 )
@@ -14,13 +14,13 @@ import (
 type PackHandler struct {
 	logging logging.Logger
 	config  configs.Config
-	packSrv packs_port.IPackService
+	packSrv service.IPackService
 }
 
 func NewPackHandler(
 	logging logging.Logger,
 	config configs.Config,
-	packSrv packs_port.IPackService,
+	packSrv service.IPackService,
 ) *PackHandler {
 	return &PackHandler{
 		logging: logging,
@@ -74,7 +74,7 @@ func (h *PackHandler) List(ctx *gin.Context) {
 // @ID Put-api-v1-packs
 // @Router /api/v1/packs [put]
 func (h *PackHandler) Update(ctx *gin.Context) {
-	var requestBody requests.UpdatePackRequest
+	var requestBody dto.UpdatePackRequest
 	if err := ctx.ShouldBindJSON(&requestBody); err != nil {
 		response.NewResponse(ctx).Validation(err).Echo(http.StatusUnprocessableEntity)
 		return
@@ -108,7 +108,7 @@ func (h *PackHandler) Update(ctx *gin.Context) {
 // @ID GET-api-v1-packs-calculate
 // @Router /api/v1/packs/calculate [get]
 func (h *PackHandler) Calculate(ctx *gin.Context) {
-	var requestForm requests.CalculatePackRequest
+	var requestForm dto.CalculatePackRequest
 	if err := ctx.ShouldBindQuery(&requestForm); err != nil {
 		response.NewResponse(ctx).Validation(err).Echo(http.StatusUnprocessableEntity)
 		return

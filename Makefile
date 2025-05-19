@@ -2,11 +2,11 @@
 
 # Build the application
 build:
-	go build -o pack_service ./cmd/http_server/main.go
+	go build -o pack_service ./cmd/app/main.go
 
 # Run the application
 run:
-	go run ./cmd/http_server/main.go
+	go run ./cmd/app/main.go
 
 # Run tests
 test:

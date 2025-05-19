@@ -1,7 +1,7 @@
 package logging
 
 import (
-	"github.com/mahdiZarepoor/pack_service_assignment/configs"
+	"github.com/mahdiZarepoor/pack_service_assignment/cmd/app/configs"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"

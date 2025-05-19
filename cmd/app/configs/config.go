@@ -6,7 +6,6 @@ import (
 	"os"
 	"strconv"
 	"sync"
-	"time"
 )
 
 var (
@@ -37,27 +36,10 @@ type Swagger struct {
 	Enable   bool
 }
 
-type Redis struct {
-	Prefix             string
-	Port               string
-	Password           string
-	Host               string
-	ReadTimeout        time.Duration
-	DialTimeout        time.Duration
-	DB                 int
-	WriteTimeout       time.Duration
-	PoolSize           int
-	PoolTimeout        time.Duration
-	IdleTimeout        time.Duration
-	IdleCheckFrequency time.Duration
-	ExpireTime         time.Duration
-}
-
 // Config represents the application configuration.
 type Config struct {
 	Swagger Swagger
 	App     App
-	Redis   Redis
 }
 
 // LoadConfig loads configuration from .env file and populates the Config struct.
@@ -86,25 +68,9 @@ func LoadConfig() (Config, error) {
 	swagger.Username = os.Getenv("SWAGGER_USERNAME")
 	swagger.Password = os.Getenv("SWAGGER_PASSWORD")
 
-	var redis Redis
-	redis.Host = os.Getenv("REDIS_HOST")
-	redis.Port = os.Getenv("REDIS_PORT")
-	redis.Password = os.Getenv("REDIS_PASSWORD")
-	redis.DB = getIntEnv("REDIS_DB", 0)
-	redis.Prefix = os.Getenv("REDIS_PREFIX")
-	redis.DialTimeout = time.Duration(getIntEnv("REDIS_DIAL_TIMEOUT", 0))
-	redis.ReadTimeout = time.Duration(getIntEnv("REDIS_READ_TIMEOUT", 0))
-	redis.WriteTimeout = time.Duration(getIntEnv("REDIS_WRITE_TIMEOUT", 0))
-	redis.PoolSize = getIntEnv("REDIS_POOL_SIZE", 0)
-	redis.PoolTimeout = time.Duration(getIntEnv("REDIS_POOL_TIMEOUT", 0))
-	redis.IdleTimeout = time.Duration(getIntEnv("REDIS_IDLE_TIMEOUT", 0))
-	redis.IdleCheckFrequency = time.Duration(getIntEnv("REDIS_IDLE_CHECK_FREQUENCY", 0))
-	redis.ExpireTime = time.Duration(getIntEnv("REDIS_EXPIRE_TIME", 0))
-
 	return Config{
 		App:     app,
 		Swagger: swagger,
-		Redis:   redis,
 	}, nil
 }
 
